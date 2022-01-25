@@ -7,7 +7,6 @@ public class TicTacToeBoardTest {
   @Test
   public void testValidBoardNoWinner() {
     TicTacToeBoard board = new TicTacToeBoard("O...X.X..");
-    \\test
     assertEquals(Evaluation.NoWinner, board.evaluate());
   }
 }
