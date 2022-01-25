@@ -3,6 +3,18 @@ package com.example;
 /**
  * Takes in and evaluates a string representing a tic tac toe board.
  */
+
+
+/**
+ * Rule extends as follows in higher n * n dimensions:
+ *
+ * The player who succeeds in placing the number of dimension
+ * of his/her mark in a horizontal or vertical row wins.
+ *
+ * The player who succeeds in filling one of the diagonals
+ * fully with his/hers mark wins.
+ */
+
 public class TicTacToeBoard {
 
   /**
