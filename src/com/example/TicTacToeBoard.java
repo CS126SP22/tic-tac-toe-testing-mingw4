@@ -1,12 +1,6 @@
 package com.example;
 
 
-
-/**
- * Takes in and evaluates a string representing a tic tac toe board.
- */
-
-
 /**
  * Rule extends as follows in higher n * n dimensions:
  *
@@ -20,6 +14,7 @@ package com.example;
 public class TicTacToeBoard {
   int dimension;
   String board;
+
   /**
    * This method should load a string into your TicTacToeBoard class.
    * @param board The string representing the board
@@ -139,8 +134,6 @@ public class TicTacToeBoard {
     if (Math.abs(xnum - onum) > 1) {
       return Evaluation.UnreachableState;
     }
-
-    boolean valid = true;
 
     //Count win times.
     int xWinTimes;
