@@ -62,19 +62,19 @@ public class TicTacToeBoardTest {
 
   @Test
   public void testValidBoardOWins_SpecialCharacters() {
-    TicTacToeBoard board = new TicTacToeBoard("?oXxO^xO7");
+    TicTacToeBoard board = new TicTacToeBoard("?OXXO^xO7");
     assertEquals(Evaluation.Owins, board.evaluate());
   }
 
   @Test
   public void testValidBoardOWins_Diagonal() {
-    TicTacToeBoard board = new TicTacToeBoard("O.XXo..xO");
+    TicTacToeBoard board = new TicTacToeBoard("O.XXO..xO");
     assertEquals(Evaluation.Owins, board.evaluate());
   }
 
   @Test
   public void testValidBoardOWins_DoubleWin() {
-    TicTacToeBoard board = new TicTacToeBoard("OXoOoXOxX");
+    TicTacToeBoard board = new TicTacToeBoard("OXOOOXOXX");
     assertEquals(Evaluation.Owins, board.evaluate());
   }
 }
