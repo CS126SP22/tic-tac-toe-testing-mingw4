@@ -1,5 +1,7 @@
 package com.example;
 
+
+
 /**
  * Takes in and evaluates a string representing a tic tac toe board.
  */
@@ -105,7 +107,63 @@ public class TicTacToeBoard {
    */
   public Evaluation evaluate() {
     //Check whether the board is legal by checking length.
+    if (board.length() != (dimension * dimension)) {
+      throw new IllegalArgumentException("Board is illegal due to incorrect string length.");
+    }
 
-    return Evaluation.UnreachableState;
+    //Unify the board by changing all characters into lower cases.
+    String unified_board = board.toLowerCase();
+
+    //Count the number of moves of x and o;
+    int xnum = 0;
+    int onum = 0;
+
+    for (int pos = 0; pos < board.length(); pos++) {
+      char curr = unified_board.charAt(pos);
+      if (curr == 'x') {
+        xnum++;
+      } else if (curr == 'o') {
+        onum++;
+      }
+    }
+
+    //Check whether the board is invalid.
+
+    //Check number of moves.
+    if (Math.abs(xnum - onum) > 1) {
+      return Evaluation.UnreachableState;
+    }
+
+    boolean valid = true;
+
+    //Count win times.
+    int xWinTimes;
+    int oWinTimes;
+    xWinTimes = CheckDiagonal('x') + CheckHorizontals('x') + CheckVerticals('x');
+    oWinTimes = CheckDiagonal('o') + CheckHorizontals('o') + CheckVerticals('o');
+
+    //Check different players double win.
+    if (xWinTimes != 0 && oWinTimes != 0) {
+      return Evaluation.UnreachableState;
+    }
+
+    //Check same player, the number of same type win is larger than 1.
+    if (CheckDiagonal('x') > 1 || CheckDiagonal('y') > 1 || CheckHorizontals('x') > 1
+            || CheckHorizontals('y') > 1 || CheckVerticals('x') > 1 || CheckVerticals('y') > 1) {
+      return Evaluation.UnreachableState;
+    }
+
+    //Check if x wins.
+    if (CheckDiagonal('x') == 1 || CheckHorizontals('x') == 1 || CheckVerticals('x') == 1) {
+      return Evaluation.Xwins;
+    }
+
+    //Check if o wins.
+    if (CheckDiagonal('o') == 1 || CheckHorizontals('o') == 1 || CheckVerticals('o') == 1) {
+      return Evaluation.Owins;
+    }
+
+    //If x didn't win, o didn't win, and the board is valid, then there is no winner.
+    return Evaluation.NoWinner;
   }
 }
