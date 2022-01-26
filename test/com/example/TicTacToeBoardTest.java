@@ -68,7 +68,7 @@ public class TicTacToeBoardTest {
 
   @Test
   public void testValidBoardOWins_Diagonal() {
-    TicTacToeBoard board = new TicTacToeBoard("X.Oxo.O.x");
+    TicTacToeBoard board = new TicTacToeBoard("O.XXo..xO");
     assertEquals(Evaluation.Owins, board.evaluate());
   }
 

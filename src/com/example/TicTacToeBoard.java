@@ -90,13 +90,19 @@ public class TicTacToeBoard {
   private int CheckDiagonal (char player) {
     String unified_board = board.toLowerCase();
     //count times at which requirements are satisfied.
-    int count = 1;
+    int countRight = 1;
     for (int column = 0; column < dimension; column++) {
       if (unified_board.charAt(column * dimension + column) != player) {
-        count = 0;
+        countRight = 0;
       }
     }
-    return count;
+    int countLeft = 1;
+    for (int row = dimension; row > 0; row--) {
+      if (unified_board.charAt(row * dimension - row) != player) {
+          countLeft = 0;
+      }
+    }
+    return countLeft + countRight;
   }
 
 
@@ -147,19 +153,19 @@ public class TicTacToeBoard {
       return Evaluation.UnreachableState;
     }
 
-    //Check same player, the number of same type win is larger than 1.
-    if (CheckDiagonal('x') > 1 || CheckDiagonal('y') > 1 || CheckHorizontals('x') > 1
-            || CheckHorizontals('y') > 1 || CheckVerticals('x') > 1 || CheckVerticals('y') > 1) {
+    //Check same player, the number of same type of Horizontal or Vertical win is larger than 1.
+    if (CheckHorizontals('x') > 1 || CheckHorizontals('y') > 1
+            || CheckVerticals('x') > 1 || CheckVerticals('y') > 1) {
       return Evaluation.UnreachableState;
     }
 
     //Check if x wins.
-    if (CheckDiagonal('x') == 1 || CheckHorizontals('x') == 1 || CheckVerticals('x') == 1) {
+    if (CheckDiagonal('x') == 1 || CheckDiagonal('x') == 2 || CheckHorizontals('x') == 1 || CheckVerticals('x') == 1) {
       return Evaluation.Xwins;
     }
 
     //Check if o wins.
-    if (CheckDiagonal('o') == 1 || CheckHorizontals('o') == 1 || CheckVerticals('o') == 1) {
+    if (CheckDiagonal('o') == 1 || CheckDiagonal('o') == 2 || CheckHorizontals('o') == 1 || CheckVerticals('o') == 1) {
       return Evaluation.Owins;
     }
 
